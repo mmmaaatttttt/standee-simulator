@@ -9,7 +9,7 @@ export default defineConfig({
       src: "/src",
       components: "/src/components",
       containers: "/src/containers",
-      hooks: "/src/hooks"
-    }
-  }
+      hooks: "/src/hooks",
+    },
+  },
 });

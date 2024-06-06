@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import ChartContainer from "containers/chart-container";
+import SimulatorContainer from "containers/simulator-container";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <Typography variant="h3" align="center">
         Standee Simulator
       </Typography>
-      <ChartContainer />
+      <SimulatorContainer />
     </>
   );
 }

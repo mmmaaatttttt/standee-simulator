@@ -9,12 +9,14 @@ function StandeeGrid({ tallies }: StandeeGridProps) {
   return (
     <Box
       sx={{
+        border: 2,
+        borderColor: "primary.main",
+        borderRadius: 2,
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
         p: 2,
-        borderRadius: 2,
-        border: 2,
-        borderColor: "primary.main"
+        mx: 3,
       }}
     >
       {tallies.map((tally, idx) => (

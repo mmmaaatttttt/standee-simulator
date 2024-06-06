@@ -19,12 +19,12 @@ function Standee({ tally }: StandeeProps) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        m: 1,
-        p: 1,
+        m: 0.5,
+        p: 0.5,
       }}
     >
       <Icon sx={{ color }} />
-      <Typography paragraph sx={{ color, m: 0 }}>
+      <Typography paragraph sx={{ color, m: 0, fontSize: "small" }}>
         {tally}
       </Typography>
     </Box>

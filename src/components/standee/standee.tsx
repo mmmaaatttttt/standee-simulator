@@ -2,6 +2,25 @@ import { Star, StarBorder } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { grey } from "@mui/material/colors";
+import { keyframes } from '@emotion/react';
+
+const jiggle = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2) rotate(-3deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(3deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 type StandeeProps = {
   tally: number;
@@ -12,7 +31,9 @@ function Standee({ tally }: StandeeProps) {
   const Icon = tally === 0 ? StarBorder : Star;
   return (
     <Box
+      key={tally}
       sx={{
+        animation: `${jiggle} 0.6s ease-in-out`,
         alignItems: "center",
         border: 2,
         borderColor: color,

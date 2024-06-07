@@ -4,7 +4,7 @@ const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
   const callbackRef = useRef(callback);
   const frameRef = useRef<number | null>(null);
   const lastExecutionTimeRef = useRef<number>(0);
-  const interval = 60000 / perMinuteRate; 
+  const interval = 60000 / perMinuteRate;
 
   const [isRunning, setIsRunning] = useState(false);
 
@@ -22,7 +22,7 @@ const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
         frameRef.current = requestAnimationFrame(loop);
       }
     },
-    [interval, isRunning]
+    [interval, isRunning],
   );
 
   const start = useCallback(() => {
@@ -49,13 +49,12 @@ const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
   useEffect(() => {
     return () => {
       if (frameRef.current !== null) {
-        console.log("cancelling from unmount");
         cancelAnimationFrame(frameRef.current);
       }
     };
   }, []);
 
-  return { start, stop };
+  return { start, stop, isRunning };
 };
 
 export default useAnimationFrame;

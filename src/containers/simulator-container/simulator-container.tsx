@@ -1,9 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
-import Slider from "@mui/material/Slider";
+import { PlayArrow, Pause, RestartAlt } from "@mui/icons-material";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Slider from "@mui/material/Slider";
 import useAnimationFrame from "hooks/useAnimationFrame";
-import StandeeGrid from "components/standee-grid/standee-grid";
-import TotalWithAnimateButtons from "components/total-with-animate-buttons";
+import StandeeGrid from "components/standee-grid";
+import TotalCost from "components/total-cost";
 
 const MIN_STANDEES = 1;
 const MAX_STANDEES = 200;
@@ -60,6 +62,12 @@ const SimulatorContainer = () => {
     setStandeeTallies(new Array(standeeTallies.length).fill(0));
   }, []);
 
+  const toggle = isRunning ? (
+    <Pause sx={{ cursor: "pointer" }} onClick={stop} />
+  ) : (
+    <PlayArrow sx={{ cursor: "pointer" }} onClick={start} />
+  );
+
   useEffect(() => {
     if (standeeTallies.every((tally) => tally > 0)) {
       stop();
@@ -102,16 +110,14 @@ const SimulatorContainer = () => {
         min={MIN_COST}
         max={MAX_COST}
       />
+      <Box>
+        {toggle}
+        <RestartAlt sx={{ cursor: "pointer" }} onClick={reset} />
+      </Box>
 
       <Grid container spacing={2}>
         <Grid item sm={12} md={4}>
-          <TotalWithAnimateButtons
-            start={start}
-            stop={stop}
-            reset={reset}
-            isRunning={isRunning}
-            total={totalCost}
-          />
+          <TotalCost total={totalCost} />
         </Grid>
         <Grid item sm={12} md={8}>
           <StandeeGrid tallies={standeeTallies} />

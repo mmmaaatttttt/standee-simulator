@@ -1,10 +1,11 @@
-import { PlayArrow, Pause, RestartAlt } from "@mui/icons-material";
+import { PlayArrow, Pause, RestartAlt, Settings } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 
 type SimulatorButtonsProps = {
   start: () => void;
   stop: () => void;
   reset: () => void;
+  openModal: () => void;
   isFinished: boolean;
   isRunning: boolean;
 };
@@ -19,6 +20,7 @@ function SimulatorButtons({
   start,
   stop,
   reset,
+  openModal,
   isFinished,
   isRunning,
 }: SimulatorButtonsProps) {
@@ -36,6 +38,7 @@ function SimulatorButtons({
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       {toggle}
       <RestartAlt sx={iconStyles} onClick={reset} />
+      <Settings sx={iconStyles} onClick={openModal} />
     </Box>
   );
 }

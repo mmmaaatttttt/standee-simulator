@@ -4,7 +4,7 @@ import SimulatorContainer from "containers/simulator-container";
 function App() {
   return (
     <>
-      <Typography variant="h3" align="center">
+      <Typography variant="h2" align="center">
         Standee Simulator
       </Typography>
       <SimulatorContainer />

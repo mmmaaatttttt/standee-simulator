@@ -84,8 +84,23 @@ const SimulatorContainer = () => {
         onClose={closeModal}
         aria-labelledby="modal-modal-title"
       >
-        <Box>
-          <Typography variant="h4" id="modal-modal-title">
+        <Box
+          sx={{
+            position: "absolute" as "absolute",
+            top: "10%",
+            left: "50%",
+            transform: "translate(-50%, -10%)",
+            width: "75%",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography
+            variant="h4"
+            id="modal-modal-title"
+            sx={{ textAlign: "center" }}
+          >
             Simulator Settings
           </Typography>
           <Slider

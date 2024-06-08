@@ -10,7 +10,9 @@
       "src/*": ["./src/*"],
       "components/*": ["./src/components/*"],
       "containers": ["./src/containers/*"],
-      "hooks": ["./src/hooks/*"]
+      "contexts": ["./src/contexts/*"],
+      "hooks": ["./src/hooks/*"],
+      "providers": ["./src/providers/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

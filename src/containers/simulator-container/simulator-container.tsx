@@ -1,9 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
-import { PlayArrow, Pause, RestartAlt } from "@mui/icons-material";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Slider from "@mui/material/Slider";
 import useAnimationFrame from "hooks/useAnimationFrame";
+import SimulatorButtons from "components/simulator-buttons";
 import StandeeGrid from "components/standee-grid";
 import TotalCost from "components/total-cost";
 
@@ -25,8 +24,9 @@ const SimulatorContainer = () => {
   );
   const [randomCost, setRandomCost] = useState<number>(DEFAULT_RANDOM_COST);
   const [switchStrategyAfter, setSwitchStrategyAfter] =
-    useState<number>(DEFAULT_STANDEES); // todo change this
+    useState<number>(DEFAULT_STANDEES);
   const [totalCost, setTotalCost] = useState<number>(0);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const getStandee = useCallback(() => {
     setStandeeTallies((oldTallies) => {
@@ -60,17 +60,13 @@ const SimulatorContainer = () => {
   const reset = useCallback(() => {
     stop();
     setStandeeTallies(new Array(standeeTallies.length).fill(0));
-  }, []);
-
-  const toggle = isRunning ? (
-    <Pause sx={{ cursor: "pointer" }} onClick={stop} />
-  ) : (
-    <PlayArrow sx={{ cursor: "pointer" }} onClick={start} />
-  );
+    setIsFinished(false);
+  }, [stop, standeeTallies.length]);
 
   useEffect(() => {
     if (standeeTallies.every((tally) => tally > 0)) {
       stop();
+      setIsFinished(true);
     }
   }, [standeeTallies, stop]);
 
@@ -110,11 +106,13 @@ const SimulatorContainer = () => {
         min={MIN_COST}
         max={MAX_COST}
       />
-      <Box>
-        {toggle}
-        <RestartAlt sx={{ cursor: "pointer" }} onClick={reset} />
-      </Box>
-
+      <SimulatorButtons
+        stop={stop}
+        start={start}
+        isFinished={isFinished}
+        isRunning={isRunning}
+        reset={reset}
+      />
       <Grid container spacing={2}>
         <Grid item sm={12} md={4}>
           <TotalCost total={totalCost} />

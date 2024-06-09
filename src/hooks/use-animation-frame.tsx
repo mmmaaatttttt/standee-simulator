@@ -1,31 +1,30 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 
-const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
+const useAnimationFrame = (
+  callback: () => void,
+  endCheck: () => boolean,
+  perMinuteRate: number,
+) => {
   const callbackRef = useRef(callback);
+  const endCheckRef = useRef(endCheck);
   const frameRef = useRef<number | null>(null);
   const lastExecutionTimeRef = useRef<number>(0);
   const interval = 60000 / perMinuteRate;
 
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [isAtStart, setIsAtStart] = useState<boolean>(true);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   useEffect(() => {
     callbackRef.current = callback;
   }, [callback]);
 
-  const loop = useCallback(
-    (time: number) => {
-      if (time - lastExecutionTimeRef.current >= interval) {
-        callbackRef.current();
-        lastExecutionTimeRef.current = time;
-      }
-      if (isRunning) {
-        frameRef.current = requestAnimationFrame(loop);
-      }
-    },
-    [interval, isRunning],
-  );
+  useEffect(() => {
+    endCheckRef.current = endCheck;
+  }, [endCheck]);
 
   const start = useCallback(() => {
+    setIsAtStart(false);
     if (!isRunning) {
       setIsRunning(true);
       lastExecutionTimeRef.current = performance.now();
@@ -40,11 +39,41 @@ const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
     }
   }, []);
 
+  const reset = useCallback(() => {
+    stop();
+    setIsAtStart(true);
+    setIsFinished(false);
+  }, [stop]);
+
+  const endOrContinue = useCallback(
+    (loop: (time: number) => void) => {
+      if (isRunning) {
+        if (endCheckRef.current()) {
+          stop();
+          setIsRunning(false);
+          setIsFinished(true);
+        } else {
+          frameRef.current = requestAnimationFrame(loop);
+        }
+      }
+    },
+    [isRunning, stop],
+  );
+
+  const loop = useCallback(
+    (time: number) => {
+      if (time - lastExecutionTimeRef.current >= interval) {
+        callbackRef.current();
+        lastExecutionTimeRef.current = time;
+      }
+      endOrContinue(loop);
+    },
+    [interval, endOrContinue],
+  );
+
   useEffect(() => {
-    if (isRunning) {
-      frameRef.current = requestAnimationFrame(loop);
-    }
-  }, [isRunning, loop]);
+    endOrContinue(loop);
+  }, [loop, endOrContinue]);
 
   useEffect(() => {
     return () => {
@@ -54,7 +83,7 @@ const useAnimationFrame = (callback: () => void, perMinuteRate: number) => {
     };
   }, []);
 
-  return { start, stop, isRunning };
+  return { start, stop, reset, isRunning, isAtStart, isFinished };
 };
 
 export default useAnimationFrame;

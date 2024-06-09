@@ -27,21 +27,16 @@ function SimulatorButtons({
   isFinished,
   isRunning,
 }: SimulatorButtonsProps) {
-  let toggle = null;
-
-  if (!isFinished) {
-    toggle = isRunning ? (
-      <Pause sx={iconStyles} onClick={stop} />
-    ) : (
-      <PlayArrow sx={iconStyles} onClick={start} />
-    );
-  }
-
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
-      {toggle}
-      <RestartAlt sx={iconStyles} onClick={reset} />
-      {isAtStart ? <Settings sx={iconStyles} onClick={openModal} /> : null}
+      {!isFinished && !isRunning && (
+        <PlayArrow sx={iconStyles} onClick={start} />
+      )}
+      {!isFinished && isRunning && (
+        <Pause sx={iconStyles} onClick={stop} />
+      )}
+      {!isAtStart && <RestartAlt sx={iconStyles} onClick={reset} />}
+      {isAtStart && <Settings sx={iconStyles} onClick={openModal} />}
     </Box>
   );
 }

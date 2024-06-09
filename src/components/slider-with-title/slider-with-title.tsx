@@ -15,7 +15,7 @@ function SliderWithTitle({
   shiftStep,
 }: SliderDataType) {
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <Typography variant="h6" sx={{ textAlign: "center" }}>
         {title}: {value}
       </Typography>

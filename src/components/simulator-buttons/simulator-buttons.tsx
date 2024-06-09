@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { PlayArrow, Pause, RestartAlt, Settings } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 
@@ -6,6 +7,7 @@ type SimulatorButtonsProps = {
   stop: () => void;
   reset: () => void;
   openModal: () => void;
+  isAtStart: boolean;
   isFinished: boolean;
   isRunning: boolean;
 };
@@ -21,6 +23,7 @@ function SimulatorButtons({
   stop,
   reset,
   openModal,
+  isAtStart,
   isFinished,
   isRunning,
 }: SimulatorButtonsProps) {
@@ -38,9 +41,11 @@ function SimulatorButtons({
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       {toggle}
       <RestartAlt sx={iconStyles} onClick={reset} />
-      <Settings sx={iconStyles} onClick={openModal} />
+      {isAtStart ? <Settings sx={iconStyles} onClick={openModal} /> : null}
     </Box>
   );
 }
 
-export default SimulatorButtons;
+const MemoizedSimulatorButtons = memo(SimulatorButtons);
+
+export default MemoizedSimulatorButtons;

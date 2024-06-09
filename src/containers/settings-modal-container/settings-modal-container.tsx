@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import useSettingsContext from "src/hooks/use-settings-context";
+import useSettingsContext from "hooks/use-settings-context";
 import SettingsModal from "components/settings-modal";
 import { SliderChangeHandler } from "components/slider-with-title/types";
 import {

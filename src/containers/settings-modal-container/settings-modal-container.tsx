@@ -2,12 +2,6 @@ import { useCallback, useMemo } from "react";
 import useSettingsContext from "hooks/use-settings-context";
 import SettingsModal from "components/settings-modal";
 import { SliderChangeHandler } from "components/slider-with-title/types";
-import {
-  DEFAULT_GUARANTEED_COST,
-  DEFAULT_RANDOM_COST,
-  DEFAULT_STANDEES,
-  DEFAULT_SWITCH_AFTER,
-} from "providers/settings-provider";
 
 type SettingsModalContainerProps = {
   isOpen: boolean;
@@ -75,7 +69,6 @@ function SettingsModalContainer({
         title: "Total Number of Standees",
         min: MIN_STANDEES,
         max: MAX_STANDEES,
-        defaultValue: DEFAULT_STANDEES,
         step: 1,
         shiftStep: 5,
       },
@@ -85,7 +78,6 @@ function SettingsModalContainer({
         title: "Cost of a random Standee",
         min: MIN_COST,
         max: MAX_COST,
-        defaultValue: DEFAULT_RANDOM_COST,
         step: 1,
         shiftStep: 5,
       },
@@ -95,7 +87,6 @@ function SettingsModalContainer({
         title: "Cost of a guaranteed new Standee",
         min: MIN_COST,
         max: MAX_COST,
-        defaultValue: DEFAULT_GUARANTEED_COST,
         step: 1,
         shiftStep: 5,
       },
@@ -105,7 +96,6 @@ function SettingsModalContainer({
         title: "When to stop buying random Standees",
         min: 0,
         max: numStandees,
-        defaultValue: DEFAULT_SWITCH_AFTER,
         step: 1,
         shiftStep: 5,
       },

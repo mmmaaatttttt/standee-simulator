@@ -6,7 +6,6 @@ export type SliderDataType = {
   onChange: SliderChangeHandler;
   min: number;
   max: number;
-  defaultValue: number;
   step: number;
   shiftStep: number;
 };

@@ -8,7 +8,6 @@ function SliderWithTitle({
   value,
   title,
   onChange,
-  defaultValue,
   min,
   max,
   step,
@@ -21,13 +20,13 @@ function SliderWithTitle({
       </Typography>
       <Slider
         aria-label={title}
-        defaultValue={defaultValue}
         valueLabelDisplay="auto"
         onChange={onChange as SliderProps["onChange"]}
         shiftStep={shiftStep}
         step={step}
         min={min}
         max={max}
+        value={value}
       />
     </Box>
   );

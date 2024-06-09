@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import SimulatorButtonsContainer from "containers/simulator-buttons-container";
 import StandeeGrid from "components/standee-grid";
-import TotalCost from "components/total-cost";
+import TotalCostContainer from "containers/total-cost-container";
 import SettingsModalContainer from "containers/settings-modal-container";
 
 const SimulatorContainer = () => {
@@ -18,7 +18,7 @@ const SimulatorContainer = () => {
       <SimulatorButtonsContainer openModal={openModal} />
       <Grid container spacing={2}>
         <Grid item sm={12} md={4}>
-          <TotalCost />
+          <TotalCostContainer />
         </Grid>
         <Grid item sm={12} md={8}>
           <StandeeGrid />

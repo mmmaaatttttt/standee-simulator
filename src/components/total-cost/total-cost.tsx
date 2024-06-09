@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Toll } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -13,7 +14,12 @@ function TotalCost({ total }: TotalCostProps) {
     >
       <Typography variant="h2">Coins spent:</Typography>
       <Box
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: "secondary.main" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "secondary.main",
+        }}
       >
         <Typography variant="h1">{total.toLocaleString()}</Typography>
         <Toll sx={{ fontSize: 60 }} />
@@ -22,4 +28,6 @@ function TotalCost({ total }: TotalCostProps) {
   );
 }
 
-export default TotalCost;
+const MemoizedTotalCost = memo(TotalCost);
+
+export default MemoizedTotalCost;

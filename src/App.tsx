@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import SimulatorContainer from "containers/simulator-container";
+import Simulator from "components/simulator";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <Typography variant="h2" align="center">
         Standee Simulator
       </Typography>
-      <SimulatorContainer />
+      <Simulator />
     </>
   );
 }

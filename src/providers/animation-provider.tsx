@@ -26,7 +26,7 @@ function AnimationProvider({ children }: AnimationProviderProps) {
   );
 
   useEffect(() => {
-    initializeTallies(numStandees);
+    setStandeeTallies(initializeTallies(numStandees));
   }, [numStandees]);
 
   const getStandee = useCallback(() => {
@@ -60,7 +60,7 @@ function AnimationProvider({ children }: AnimationProviderProps) {
 
   const resetAll = useCallback(() => {
     reset();
-    initializeTallies(numStandees);
+    setStandeeTallies(initializeTallies(numStandees));
   }, [reset, numStandees]);
 
   const value = {

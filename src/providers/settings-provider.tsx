@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import SettingsContext, { Strategy } from "contexts/settings-context";
 
-export const DEFAULT_STANDEES = 144;
-export const DEFAULT_RANDOM_COST = 10;
-export const DEFAULT_GUARANTEED_COST = 30;
-export const DEFAULT_SWITCH_AFTER = 0;
+const INITIAL_STANDEES = 144;
+const INITIAL_RANDOM_COST = 10;
+const INITIAL_GUARANTEED_COST = 30;
+const INITIAL_SWITCH_AFTER = 0;
 
 type SettingsProviderProps = {
   children: React.ReactNode;
@@ -12,17 +12,17 @@ type SettingsProviderProps = {
 
 function SettingsProvider({ children }: SettingsProviderProps) {
   const [guaranteedCost, setGuaranteedCost] = useState<number>(
-    DEFAULT_GUARANTEED_COST,
+    INITIAL_GUARANTEED_COST,
   );
-  const [randomCost, setRandomCost] = useState<number>(DEFAULT_RANDOM_COST);
-  const [numStandees, setNumStandees] = useState<number>(DEFAULT_STANDEES);
+  const [randomCost, setRandomCost] = useState<number>(INITIAL_RANDOM_COST);
+  const [numStandees, setNumStandees] = useState<number>(INITIAL_STANDEES);
   const [switchStrategyAfter, setSwitchStrategyAfter] =
-    useState<number>(DEFAULT_SWITCH_AFTER);
+    useState<number>(INITIAL_SWITCH_AFTER);
   const [strategy, setStrategy] = useState<Strategy>("guaranteed");
 
   useEffect(() => {
     if (strategy === "guaranteed") {
-      setSwitchStrategyAfter(DEFAULT_SWITCH_AFTER);
+      setSwitchStrategyAfter(INITIAL_SWITCH_AFTER);
     } else if (strategy === "random") {
       setSwitchStrategyAfter(numStandees);
     }

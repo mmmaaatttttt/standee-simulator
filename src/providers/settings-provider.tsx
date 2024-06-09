@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import SettingsContext from "contexts/SettingsContext";
+import SettingsContext, { Strategy } from "contexts/settings-context";
 
-const DEFAULT_STANDEES = 144;
-const DEFAULT_RANDOM_COST = 10;
-const DEFAULT_GUARANTEED_COST = 30;
-const DEFAULT_SWITCH_AFTER = 0;
-
-type Strategy = "random" | "guaranteed" | "mixed";
+export const DEFAULT_STANDEES = 144;
+export const DEFAULT_RANDOM_COST = 10;
+export const DEFAULT_GUARANTEED_COST = 30;
+export const DEFAULT_SWITCH_AFTER = 0;
 
 type SettingsProviderProps = {
   children: React.ReactNode;

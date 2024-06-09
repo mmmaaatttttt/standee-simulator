@@ -5,7 +5,11 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { SettingsModalProps } from "./types";
+import { Strategy } from "contexts/settings-context";
 import SliderWithTitle from "components/slider-with-title";
+import capitalize from "utils/capitalize";
+
+const strategies: Strategy[] = ["guaranteed", "random", "mixed"];
 
 function SettingsModal({
   isOpen,
@@ -23,9 +27,13 @@ function SettingsModal({
           left: "50%",
           transform: "translate(-50%, -10%)",
           width: "75%",
+          maxWidth: 800,
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <Typography
@@ -42,15 +50,32 @@ function SettingsModal({
           <Typography variant="h6" sx={{ textAlign: "center" }}>
             What Strategy would you like to use?
           </Typography>
-          <ButtonGroup variant="outlined" aria-label="Strategy Selection">
-            <Button onClick={() => setStrategy("guaranteed")}>
-              Guaranteed
-            </Button>
-            <Button onClick={() => setStrategy("random")}>Random</Button>
-            <Button onClick={() => setStrategy("mixed")}>Mixed</Button>
+          <ButtonGroup
+            aria-label="Strategy Selection"
+            size="large"
+            sx={{ m: 2 }}
+          >
+            {strategies.map((currStrategy) => (
+              <Button
+                key={currStrategy}
+                color="primary"
+                variant={strategy === currStrategy ? "contained" : "outlined"}
+                onClick={() => setStrategy(currStrategy)}
+              >
+                {capitalize(currStrategy)}
+              </Button>
+            ))}
           </ButtonGroup>
         </Box>
         {strategy === "mixed" ? <SliderWithTitle {...sliderData[3]} /> : null}
+        <Button
+          variant="contained"
+          size="large"
+          color="success"
+          onClick={close}
+        >
+          OK
+        </Button>
       </Box>
     </Modal>
   );

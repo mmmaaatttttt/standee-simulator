@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import SimulatorButtonsContainer from "containers/simulator-buttons-container";
-import StandeeGrid from "components/standee-grid";
+import StandeeGridContainer from "containers/standee-grid-container";
 import TotalCostContainer from "containers/total-cost-container";
 import SettingsModalContainer from "containers/settings-modal-container";
 
@@ -21,7 +21,7 @@ const SimulatorContainer = () => {
           <TotalCostContainer />
         </Grid>
         <Grid item sm={12} md={8}>
-          <StandeeGrid />
+          <StandeeGridContainer />
         </Grid>
       </Grid>
     </Box>

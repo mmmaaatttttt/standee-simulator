@@ -1,8 +1,10 @@
+import { memo } from "react";
 import Box from "@mui/material/Box";
 import Standee from "components/standee";
+import { TallyType } from "contexts/animation-context";
 
 type StandeeGridProps = {
-  tallies: number[];
+  tallies: TallyType[];
 };
 
 function StandeeGrid({ tallies }: StandeeGridProps) {
@@ -20,10 +22,12 @@ function StandeeGrid({ tallies }: StandeeGridProps) {
       }}
     >
       {tallies.map((tally, idx) => (
-        <Standee tally={tally} key={idx} />
+        <Standee tally={tally.guaranteed + tally.random} key={idx} />
       ))}
     </Box>
   );
 }
 
-export default StandeeGrid;
+const MemoizedStandeeGrid = memo(StandeeGrid);
+
+export default MemoizedStandeeGrid;

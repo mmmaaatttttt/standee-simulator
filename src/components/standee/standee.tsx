@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Star, StarBorder } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { grey } from "@mui/material/colors";
-import { keyframes } from '@emotion/react';
+import { keyframes } from "@emotion/react";
 
 const jiggle = keyframes`
   0% {
@@ -52,4 +53,6 @@ function Standee({ tally }: StandeeProps) {
   );
 }
 
-export default Standee;
+const MemoizedStandee = memo(Standee);
+
+export default MemoizedStandee;

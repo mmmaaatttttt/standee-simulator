@@ -28,6 +28,12 @@ function SettingsProvider({ children }: SettingsProviderProps) {
     }
   }, [numStandees, strategy]);
 
+  useEffect(() => {
+    if (numStandees < switchStrategyAfter) {
+      setSwitchStrategyAfter(numStandees);
+    }
+  }, [numStandees, switchStrategyAfter]);
+
   return (
     <SettingsContext.Provider
       value={{

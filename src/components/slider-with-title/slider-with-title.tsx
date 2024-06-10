@@ -16,7 +16,7 @@ function SliderWithTitle({
   return (
     <Box sx={{ width: "100%" }}>
       <Typography variant="h6" sx={{ textAlign: "center" }}>
-        {title}: {value}
+        {title}
       </Typography>
       <Slider
         aria-label={title}

@@ -66,7 +66,7 @@ function SettingsModalContainer({
       {
         value: numStandees,
         onChange: onStandeeChange,
-        title: "Total Number of Standees",
+        title: `Total Number of Standees: ${numStandees}`,
         min: MIN_STANDEES,
         max: MAX_STANDEES,
         step: 1,
@@ -75,7 +75,7 @@ function SettingsModalContainer({
       {
         value: randomCost,
         onChange: onRandomCostChange,
-        title: "Cost of a random Standee",
+        title: `Cost of a random Standee: ${randomCost}`,
         min: MIN_COST,
         max: MAX_COST,
         step: 1,
@@ -84,7 +84,7 @@ function SettingsModalContainer({
       {
         value: guaranteedCost,
         onChange: onGuaranteedCostChange,
-        title: "Cost of a guaranteed new Standee",
+        title: `Cost of a guaranteed new Standee: ${guaranteedCost}`,
         min: MIN_COST,
         max: MAX_COST,
         step: 1,
@@ -93,7 +93,9 @@ function SettingsModalContainer({
       {
         value: switchStrategyAfter,
         onChange: onSwitchStrategyAfterChange,
-        title: "When to stop buying random Standees",
+        title: `Switch to guaranteed strategy after ${switchStrategyAfter} Standee${
+          switchStrategyAfter !== 1 ? "s" : ""
+        } collected`,
         min: 0,
         max: numStandees,
         step: 1,

@@ -84,4 +84,3 @@ function SettingsModal({
 const MemoizedSettingsModal = memo(SettingsModal);
 
 export default MemoizedSettingsModal;
-
